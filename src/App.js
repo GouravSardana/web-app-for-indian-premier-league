@@ -7,6 +7,7 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Home from "./components/Homepage/Home";
 import AllSeasonsList from "./components/Seasons/AllSeasonsList";
 import SeasonDetails from "./components/Seasons/SeasonDetails";
+import AllStatsList from "./components/Stats/AllStatsList";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route exact path="/all-seasons" component={AllSeasonsList} />
           <Route path="/all-seasons/season:id" component={SeasonDetails} />
+          <Route path="/all-stats" component={AllStatsList} />
         </Switch>
       </div>
     </BrowserRouter>
