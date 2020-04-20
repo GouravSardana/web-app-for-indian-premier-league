@@ -7,7 +7,9 @@ class Navbar extends React.Component{
       <div>
         <nav>
           <ul className="right">
-            <li><Link to={`/stats/season${1}`} className="btn blue z-depth-0">ALL STATS</Link></li>
+            <li><Link to={`/`}><b>HOME</b></Link></li>
+            <li><Link to={`/all-seasons`}><b>ALL SEASONS</b></Link></li>
+            <li><Link to={`/all-stats`}><b>ALL STATS</b></Link></li>
           </ul>
         </nav>
       </div>

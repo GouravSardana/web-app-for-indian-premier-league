@@ -8,6 +8,8 @@ import Home from "./components/Homepage/Home";
 import AllSeasonsList from "./components/Seasons/AllSeasonsList";
 import SeasonDetails from "./components/Seasons/SeasonDetails";
 import AllStatsList from "./components/Stats/AllStatsList";
+import MatchDetail from './components/MatchDetails/MatchDetail';
+
 
 function App() {
   return (
@@ -16,8 +18,9 @@ function App() {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/all-seasons" component={AllSeasonsList} />
-          <Route path="/all-seasons/season:id" component={SeasonDetails} />
-          <Route path="/all-stats" component={AllStatsList} />
+          <Route exact path="/all-seasons/season:id" component={SeasonDetails} />
+          <Route exact path="/all-stats" component={AllStatsList} />
+          <Route exact path="/all-seasons/season:id/match:match_id" component={MatchDetail} />
         </Switch>
       </div>
     </BrowserRouter>

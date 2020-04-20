@@ -19,9 +19,9 @@ class AllSeasonsList extends React.Component {
 
   render() {
     const seasons = this.state.seasons;
-    const renderSesonsCard = (seasons) ? (seasons.map((season) => {
+    const renderSesonsCard = (seasons) ? (seasons.reverse().map((season) => {
       return(
-        <SeasonCard Season_Id={season.Season_Id} Season_Year={season.Season_Year} Season_Winner={""} />
+        <SeasonCard Season_Id={season.Season_Id} Season_Year={season.Season_Year} Season_Winner={season.Season_Winner} Season_Runner_Up={season.Season_Runner_Up} />
       )
     }) ) : ( <p>Loading seasons tab ... </p> )
 

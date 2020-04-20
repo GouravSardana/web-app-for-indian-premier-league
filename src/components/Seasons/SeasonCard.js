@@ -7,11 +7,11 @@ class SeasonCard extends React.Component{
       <Link to={`/all-seasons/season${this.props.Season_Id}`}>
         <div className='card seasonCard z-depth-0'>
           <div className="card-content">
-            <h5 className="card-title indigo-text">IPL Season {this.props.Season_Id}</h5>
+            <h5 className="card-title indigo-text">IPL {this.props.Season_Year}</h5>
             <div className="card-action">
-              <span><i className="fas fa-trophy"></i> Winner : {this.props.Season_Winner}</span>
+              <h6 className="grey-text"><i className="fas fa-trophy"></i> {this.props.Season_Winner}</h6>
               <br />
-              <span><i className="fas fa-medal"></i> Runner-up : {this.props.Season_Runner_Up}</span>
+              <h6 className="grey-text"><i className="fas fa-medal"></i> {this.props.Season_Runner_Up}</h6>
             </div>
           </div>
         </div>
