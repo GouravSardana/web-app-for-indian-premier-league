@@ -1,15 +1,21 @@
 import React from "react";
 import {Link} from "react-router-dom";
+import M from 'materialize-css'
 
 class Navbar extends React.Component{
+  componentDidMount() {
+    M.Sidenav.init(document.querySelectorAll('.sidenav'));
+  }
+
   render() {
     return(
-      <div>
-        <nav>
+      <div className="navbar-fixed">
+        <nav className="nav-wrapper">
           <ul className="right">
-            <li><Link to={`/`}><b>HOME</b></Link></li>
-            <li><Link to={`/all-seasons`}><b>ALL SEASONS</b></Link></li>
-            <li><Link to={`/all-stats`}><b>ALL STATS</b></Link></li>
+            <li><Link to={`/`}><b>Home</b></Link></li>
+            <li><a href="/#teams"><b>Teams</b></a></li>
+            <li><Link to={`/all-seasons`}><b>Seasons</b></Link></li>
+            <li><a href="/#trending"><b>Trending</b></a></li>
           </ul>
         </nav>
       </div>

@@ -22,8 +22,6 @@ class AllSeasonsList extends React.Component {
 
   }
 
-
-
   render() {
     const seasons = this.state.seasons;
     const renderSesonsCard = (seasons) ? (seasons.reverse().map((season, index) => {

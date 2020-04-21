@@ -30,6 +30,8 @@ class MatchDetail extends React.Component{
       <div>
         <Navbar />
         <div className="container">
+          <h3 className="indigo-text text-darken-4">Match Summary</h3>
+          Match summary
           <h3 className="indigo-text text-darken-4">Ball by Ball</h3>
           <div className="divider"></div>
           {renderBallByBall}

@@ -1,13 +1,22 @@
 import React from "react";
 import {Link} from 'react-router-dom';
+import M from 'materialize-css';
+
 
 // components
 import Navbar from "../Navbar/Navbar";
+import Tweets from "./Tweets";
 
 class Home extends React.Component {
   state = {
 
   }
+
+
+  componentDidMount() {
+    M.ScrollSpy.init(document.querySelectorAll(".scrollspy"))
+  }
+
 
   render() {
     return(
@@ -39,7 +48,7 @@ class Home extends React.Component {
           </div>
         </section>
 
-        <section className="container">
+        <section id="teams" className="container">
             <h3 className="indigo-text text-darken-4">Teams</h3>
             <div className="divider"></div>
             <div className="row">
@@ -81,26 +90,33 @@ class Home extends React.Component {
 
         </section>
 
-        <section className="container">
+        <section id="trending" className="container">
           <h3 className="indigo-text text-darken-4">IPL On Social</h3>
           <div className="divider"></div>
-          <div className="row">
-            <div className="col m4 s12">
-              <div className="video-container">
-                <iframe title="game-banayega-name" src="//www.youtube.com/embed/o8jhKCp1liQ" frameBorder="0"
-                        allowFullScreen></iframe>
+
+          <div className="scrollspy">
+            <Tweets />
+          </div>
+          <div className="scrollspy">
+            <div className="row">
+              <p className="grey-text"><i><b>Latest Videos</b></i></p>
+              <div className="col m4 s12">
+                <div className="video-container">
+                  <iframe title="game-banayega-name" src="//www.youtube.com/embed/o8jhKCp1liQ" frameBorder="0"
+                          allowFullScreen></iframe>
+                </div>
               </div>
-            </div>
-            <div className="col m4 s12">
-              <div className="video-container">
-                <iframe title="rcb-vs-csk" src="//www.youtube.com/embed/ARwPapBuAtI" frameBorder="0"
-                        allowFullScreen></iframe>
+              <div className="col m4 s12">
+                <div className="video-container">
+                  <iframe title="rcb-vs-csk" src="//www.youtube.com/embed/ARwPapBuAtI" frameBorder="0"
+                          allowFullScreen></iframe>
+                </div>
               </div>
-            </div>
-            <div className="col m4 s12">
-              <div className="video-container">
-                <iframe title="ipl-anthem" src="//www.youtube.com/embed/BXPbbBardrk" frameBorder="0"
-                        allowFullScreen></iframe>
+              <div className="col m4 s12">
+                <div className="video-container">
+                  <iframe title="ipl-anthem" src="//www.youtube.com/embed/BXPbbBardrk" frameBorder="0"
+                          allowFullScreen></iframe>
+                </div>
               </div>
             </div>
           </div>

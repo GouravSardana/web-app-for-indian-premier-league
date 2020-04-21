@@ -9,9 +9,9 @@ class SeasonCard extends React.Component{
           <div className="card-content">
             <h5 className="card-title indigo-text">IPL {this.props.Season_Year}</h5>
             <div className="card-action">
-              <h6 className="grey-text"><i className="fas fa-trophy"></i> {this.props.Season_Winner}</h6>
+              <h6 className="teamName"><i className="fas fa-trophy"></i> {this.props.Season_Winner}</h6>
               <br />
-              <h6 className="grey-text"><i className="fas fa-medal"></i> {this.props.Season_Runner_Up}</h6>
+              <h6 className="teamName"><i className="fas fa-medal"></i> {this.props.Season_Runner_Up}</h6>
             </div>
           </div>
         </div>

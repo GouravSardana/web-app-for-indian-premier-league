@@ -1,6 +1,6 @@
 {
   "short_name": "IPL Mania",
-  "name": "Indian Premier League Statistics Application",
+  "name": "IPL Mania",
   "icons": [
     {
       "src": "favicon.ico",
@@ -21,5 +21,5 @@
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#3949ab",
-  "background_color": "#ffffff"
+  "background_color": "#7986cb"
 }
