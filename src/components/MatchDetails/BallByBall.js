@@ -1,8 +1,8 @@
 import React from 'react';
 import M from 'materialize-css'
+import axios from 'axios';
 
-// data
-import players from '../../data/players.json'
+import Preloader from "../Preloader/Preloader";
 
 class BallByBall extends React.Component{
 
@@ -16,7 +16,15 @@ class BallByBall extends React.Component{
     const ballByBall = this.props.ballByBall;
     const firstInnings = ballByBall.filter((balls) => balls.Innings_Id === "1");
     const secondInnings = ballByBall.filter((balls) => balls.Innings_Id === "2");
-    this.setState({firstInnings, secondInnings, players})
+    this.setState({firstInnings, secondInnings})
+
+    axios.get('https://iplserver.herokuapp.com/all-players')
+      .then((res) => {
+        this.setState({...this.state, players : res.data});
+      })
+      .catch((err) => {
+        console.log(err);
+      })
   }
 
 
@@ -24,12 +32,11 @@ class BallByBall extends React.Component{
     const players = this.state.players;
     const firstInnings = this.state.firstInnings;
     const secondInnings = this.state.secondInnings;
-    console.log(firstInnings);
 
-    const renderFirstInnings = (firstInnings) ? (firstInnings.reverse().map((ball, index) => {
+    const renderFirstInnings = (firstInnings && players) ? (firstInnings.reverse().map((ball, index) => {
       if(ball.Batsman_Scored === "6"){
         return(
-          <li className="collection-item">
+          <li key={index} className="collection-item">
             <div className="blue lighten-3 ballData">
               <div>
                 <span className="btn z-depth-0 grey">
@@ -45,7 +52,7 @@ class BallByBall extends React.Component{
       }
       if(ball.Batsman_Scored === "4"){
         return(
-          <li className="collection-item">
+          <li key={index} className="collection-item">
             <div className="blue lighten-3 ballData">
               <div>
                 <span className="btn z-depth-0 grey">
@@ -61,7 +68,7 @@ class BallByBall extends React.Component{
       }
       if(ball.Dissimal_Type !== ""){
         return(
-          <li className="collection-item">
+          <li key={index} className="collection-item">
             <div className="red lighten-3 ballData">
               <div>
                 <span className="btn z-depth-0 grey">
@@ -69,7 +76,7 @@ class BallByBall extends React.Component{
                 </span>
               </div>
               <div><span className="playerName">{players[parseInt(ball.Bowler_Id) - 1].Player_Name}</span> to <span className="playerName">{players[parseInt(ball.Striker_Id) - 1].Player_Name}</span>
-                <h4 className="grey-text text-darken-1 runs">OUT</h4>
+                <h4 className="grey-text text-darken-1 runs">{ball.Dissimal_Type} (<span className="playerName">{players[parseInt(ball.Player_dissimal_Id) - 1].Player_Name}</span>)</h4>
               </div>
             </div>
           </li>
@@ -78,7 +85,7 @@ class BallByBall extends React.Component{
 
       if(ball.Extra_Type !== ""){
         return(
-          <li className="collection-item">
+          <li key={index} className="collection-item">
             <div className="grey lighten-3 ballData">
               <div>
                 <span className="btn z-depth-0 grey">
@@ -93,7 +100,7 @@ class BallByBall extends React.Component{
         )
       }
         return(
-          <li className="collection-item ">
+          <li key={index} className="collection-item ">
             <div className='ballData'>
               <div>
                 <span className="btn z-depth-0 grey">
@@ -107,13 +114,13 @@ class BallByBall extends React.Component{
           </li>
         )
 
-  })) : (<p>Loading first innings...</p>)
+  })) : (<p><Preloader /></p>)
 
 
-    const renderSecondInnings = (secondInnings) ? (secondInnings.reverse().map((ball, index) => {
+    const renderSecondInnings = (secondInnings && players) ? (secondInnings.reverse().map((ball, index) => {
       if(ball.Batsman_Scored === "6"){
         return(
-          <li className="collection-item">
+          <li key={index} className="collection-item">
             <div className="blue lighten-3 ballData">
               <div>
                 <span className="btn z-depth-0 grey">
@@ -129,7 +136,7 @@ class BallByBall extends React.Component{
       }
       if(ball.Batsman_Scored === "4"){
         return(
-          <li className="collection-item">
+          <li key={index} className="collection-item">
             <div className="blue lighten-3 ballData">
               <div>
                 <span className="btn z-depth-0 grey">
@@ -145,7 +152,7 @@ class BallByBall extends React.Component{
       }
       if(ball.Dissimal_Type !== ""){
         return(
-          <li className="collection-item">
+          <li key={index} className="collection-item">
             <div className="red lighten-3 ballData">
               <div>
                 <span className="btn z-depth-0 grey">
@@ -162,7 +169,7 @@ class BallByBall extends React.Component{
 
       if(ball.Extra_Type !== ""){
         return(
-          <li className="collection-item">
+          <li key={index} className="collection-item">
             <div className="grey lighten-3 ballData">
               <div>
                 <span className="btn z-depth-0 grey">
@@ -177,7 +184,7 @@ class BallByBall extends React.Component{
         )
       }
       return(
-        <li className="collection-item ">
+        <li key={index} className="collection-item ">
           <div className='ballData'>
             <div>
                 <span className="btn z-depth-0 grey">
@@ -191,7 +198,7 @@ class BallByBall extends React.Component{
         </li>
       )
 
-    })) : (<p>Loading second innings...</p>)
+    })) : (<p><Preloader /></p>)
 
 
 

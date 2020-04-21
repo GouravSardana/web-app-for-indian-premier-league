@@ -1,10 +1,9 @@
 import React from "react";
+import axios from 'axios';
+
 import BallByBall from "./BallByBall";
-
-
-// data
-import ball_by_ball from '../../data/ball_by_ball.json';
 import Navbar from "../Navbar/Navbar";
+import Preloader from "../Preloader/Preloader";
 
 
 class MatchDetail extends React.Component{
@@ -13,13 +12,20 @@ class MatchDetail extends React.Component{
   }
   componentDidMount() {
     const matchId = this.props.match.params.match_id;
-    const ballByBall = ball_by_ball.filter((balls) => balls.Match_Id === matchId)
-    this.setState({ballByBall})
+    // const ballByBall = ball_by_ball.filter((balls) => balls.Match_Id === matchId)
+
+    axios.get(`https://iplserver.herokuapp.com/ball-by-ball/${matchId}`)
+      .then((res) => {
+        this.setState({ballByBall: res.data})
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   }
 
   render() {
     const ballByBall = this.state.ballByBall;
-    const renderBallByBall = (ballByBall) ? (<BallByBall ballByBall={ballByBall} />) : (<p>Loading Ball by ball data...</p>)
+    const renderBallByBall = (ballByBall) ? (<BallByBall ballByBall={ballByBall} />) : (<Preloader />)
     return(
       <div>
         <Navbar />

@@ -8,6 +8,10 @@
 .container{
   width: 80%;
 }
+.divider{
+  margin-bottom: 30px;
+}
+
 nav{
   background-color: rgba(57,73,171, 0.7);
 }
@@ -141,9 +145,37 @@ blockquote{
 .collection-item{
   border-right: 6px solid #3949ab;
 }
+.preloader-wrapper.big {
+  margin-top: 50px;
+  width: 200px;
+  height: 200px;
+}
+.circle-clipper .circle {
+  width: 200%;
+  height: 100%;
+  border-width: 10px;
+  border-style: solid;
+  border-color: inherit;
+  border-bottom-color: inherit;
+  border-left-color: inherit;
+  border-bottom-color: transparent !important;
+  border-radius: 50%;
+  -webkit-animation: none;
+  animation: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
+.video-container{
+  margin-top: 30px;
+}
 
 /*SMALL SCREEN DESIGN*/
 @media only screen and (max-width: 600px) {
+  .container{
+    width: 90%;
+  }
   .homeHeroHeading{
     padding-top: 50px;
     padding: 5px;
@@ -195,5 +227,48 @@ blockquote{
   }
   .matchDetailShort{
     display: block;
+  }
+
+
+  /*BALL BY BALL PAGE*/
+  .ballData{
+    border-radius: 10px;
+    color: #4d4d4d;
+    padding: 8px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+  }
+  .ballData span.btn.btn-floating{
+    cursor: default;
+  }
+  .runs{
+    font-family: Archivo Black;
+    font-size: 20px;
+    font-style: italic;
+  }
+
+  /*PRELOADER STYLES*/
+
+  .preloader-wrapper.big {
+    margin-top: 50px;
+    width: 80px;
+    height: 80px;
+  }
+  .circle-clipper .circle {
+    width: 200%;
+    height: 100%;
+    border-width: 8px;
+    border-style: solid;
+    border-color: inherit;
+    border-bottom-color: inherit;
+    border-left-color: inherit;
+    border-bottom-color: transparent !important;
+    border-radius: 50%;
+    -webkit-animation: none;
+    animation: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
   }
 }

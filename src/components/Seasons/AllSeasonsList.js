@@ -1,10 +1,9 @@
 import React from 'react'
+import axios from 'axios';
+
 import SeasonCard from "./SeasonCard";
 import Navbar from "../Navbar/Navbar";
-
-
-// data
-import seasons from '../../data/seasons.json';
+import Preloader from "../Preloader/Preloader";
 
 
 class AllSeasonsList extends React.Component {
@@ -13,17 +12,25 @@ class AllSeasonsList extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({seasons})
+    axios.get("https://iplserver.herokuapp.com/all-seasons")
+      .then((res) => {
+        this.setState({seasons: res.data})
+      })
+      .catch((err) =>{
+        console.log(err)
+      })
+
   }
+
 
 
   render() {
     const seasons = this.state.seasons;
-    const renderSesonsCard = (seasons) ? (seasons.reverse().map((season) => {
+    const renderSesonsCard = (seasons) ? (seasons.reverse().map((season, index) => {
       return(
-        <SeasonCard Season_Id={season.Season_Id} Season_Year={season.Season_Year} Season_Winner={season.Season_Winner} Season_Runner_Up={season.Season_Runner_Up} />
+        <SeasonCard key={index} Season_Id={season.Season_Id} Season_Year={season.Season_Year} Season_Winner={season.Season_Winner} Season_Runner_Up={season.Season_Runner_Up} />
       )
-    }) ) : ( <p>Loading seasons tab ... </p> )
+    }) ) : ( <Preloader /> )
 
 
 

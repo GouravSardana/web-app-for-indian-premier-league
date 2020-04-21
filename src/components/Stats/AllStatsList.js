@@ -1,9 +1,9 @@
 import React from 'react';
+import axios from 'axios';
 
-// data
-import players from '../../data/players.json';
-import seasons from '../../data/seasons.json';
+// components
 import Navbar from "../Navbar/Navbar";
+import Preloader from "../Preloader/Preloader";
 
 
 class AllStatsList extends React.Component {
@@ -12,18 +12,30 @@ class AllStatsList extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({ players, seasons})
+    axios.get("https://iplserver.herokuapp.com/all-players")
+      .then((res) => {
+        this.setState({players: res.data})
+      })
+      .catch((err) =>{
+        console.log(err)
+      })
+
+    axios.get("https://iplserver.herokuapp.com/all-seasons")
+      .then((res) => {
+        this.setState({...this.state, seasons: res.data})
+      })
+      .catch((err) =>{
+        console.log(err)
+      })
   }
 
 
   render() {
     const seasons = this.state.seasons;
     const players = this.state.players;
-    console.log(seasons);
-    console.log(players)
-    const renderSeasonStats = (seasons) ? (seasons.reverse().map((season, index) => {
+    const renderSeasonStats = (seasons && players) ? (seasons.reverse().map((season, index) => {
       return(
-        <div className="row">
+        <div key={index} className="row">
           <h5 className="grey-text"><b><i>Stats from season {season.Season_Id}, {season.Season_Year}</i></b></h5>
           <div className="col m4 s12">
             <div className="card z-depth-0 playerCard">
@@ -64,7 +76,7 @@ class AllStatsList extends React.Component {
           </div>
         </div>
       )
-    })) : (<p>Loading stats ...</p>)
+    })) : (<Preloader />)
 
     return(
       <div>

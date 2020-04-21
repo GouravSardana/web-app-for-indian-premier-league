@@ -1,32 +1,59 @@
 import React from "react";
 import {Link} from 'react-router-dom';
+import axios from 'axios';
 
 // components
 import Navbar from "../Navbar/Navbar";
+import Preloader from "../Preloader/Preloader";
 
-// data
-import matches from '../../data/matches.json';
-import teams from '../../data/teams.json'
-import players from '../../data/players.json'
-import seasons from '../../data/seasons.json';
 
 
 class SeasonDetails extends  React.Component{
     state = { }
 
   componentDidMount() {
-    const seasonFixtures = matches.filter((match) => match.Season_Id.toLocaleString() === this.props.match.params.id);
-    const seasonStats = seasons.filter((seasons) => seasons.Season_Id.toLocaleString() === this.props.match.params.id);
-    console.log(seasonFixtures)
-    this.setState({seasonFixtures, seasonStats, players});
+      const season_id = this.props.match.params.id;
+      axios.get(`https://iplserver.herokuapp.com/all-seasons/matches/${season_id}`)
+        .then((res) => {
+          this.setState({seasonFixtures : res.data})
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+
+      axios.get(`https://iplserver.herokuapp.com/all-seasons/${season_id}`)
+        .then((res) => {
+          this.setState({...this.state, seasonStats : res.data})
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+
+    axios.get(`https://iplserver.herokuapp.com/all-players/`)
+      .then((res) => {
+        this.setState({...this.state, players : res.data})
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+
+    axios.get("https://iplserver.herokuapp.com/all-teams/")
+      .then((res) => {
+        this.setState({...this.state, teams : res.data});
+      })
+      .catch((err) => {
+        console.log(err);
+      })
   }
 
 
   render() {
     const seasonFixtures = this.state.seasonFixtures;
     const seasonStats = this.state.seasonStats;
+    const players = this.state.players;
+    const teams = this.state.teams;
 
-    const renderSeasonFixtures = (seasonFixtures) ? (seasonFixtures.reverse().map((fixture, index) => {
+    const renderSeasonFixtures = (seasonFixtures && teams) ? (seasonFixtures.reverse().map((fixture, index) => {
       const matchesCount = seasonFixtures.length;
       return(
         <Link key={index} to={`/all-seasons/season${fixture.Season_Id}/match${fixture.Match_Id}`}>
@@ -56,11 +83,11 @@ class SeasonDetails extends  React.Component{
         </div>
         </Link>
       )
-    })) : (<p>Loading fixtures ...</p>)
+    })) : (<p><Preloader /></p>)
 
-    const renderSeasonStats = (seasonStats) ? (seasonStats.map((stat, index) => {
+    const renderSeasonStats = (seasonStats && players) ? (seasonStats.map((stat, index) => {
       return(
-        <div>
+        <div key={index}>
           <div className="col m4 s12">
             <div className="card z-depth-0 playerCard">
               <div className="card-content">
@@ -100,7 +127,7 @@ class SeasonDetails extends  React.Component{
         </div>
         </div>
       )
-    })) : (<p>Loading stats...</p>)
+    })) : (<p><Preloader /></p>)
 
     return(
       <div>
