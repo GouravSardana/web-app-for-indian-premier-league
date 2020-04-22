@@ -25,7 +25,7 @@ The backend is created using [Node](https://nodejs.org/) and is hosted hosted on
 4. Axios, to get data from the API endpoint via `yarn add axios` or `npm install axios`.
 
 
-### For Node (Back-end)
+#### For Node (Back-end)
 
 1. A node application via `npm init -y` sets up a `package.json` file.
 2. Express, a popular node.js microserver to create a backend server, via `npm install express`.
