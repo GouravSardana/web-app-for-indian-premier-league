@@ -6,8 +6,6 @@ import axios from 'axios';
 import Navbar from "../Navbar/Navbar";
 import Preloader from "../Preloader/Preloader";
 
-
-
 class SeasonDetails extends  React.Component{
     state = { }
 
@@ -76,6 +74,8 @@ class SeasonDetails extends  React.Component{
                 <h6 className="teamName indigo-text text-darken-4"><img className="textMiddle" src={teams[fixture.Opponent_Team_Id - 1].Img_Src} height="80px" alt="" /> {teams[fixture.Opponent_Team_Id - 1].Team_Name}</h6>
               </div>
             </div>
+            { (fixture.Win_Type === "by runs") && <p className="center-align"><b><i>{teams[parseInt(fixture.Match_Winner_Id)-1].Team_Name} won by {fixture.Won_By} runs</i></b></p>}
+            { (fixture.Win_Type === "by wickets") && <p className="center-align"><b><i>{teams[parseInt(fixture.Match_Winner_Id)-1].Team_Name} won by {fixture.Won_By} wickets</i></b></p>}
           </div>
           <div className="card-action">
             <h6 className="grey-text"><b><i className="fas fa-map-marker-alt"></i> <i>{fixture.Venue_Name}, {fixture.City_Name}</i></b></h6>

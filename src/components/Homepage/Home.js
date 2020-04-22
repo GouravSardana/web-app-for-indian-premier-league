@@ -57,8 +57,8 @@ class Home extends React.Component {
                 <h6 className="indigo-text"><b><i>Chennai Super Kings (CSK)</i></b></h6>
               </div>
               <div style={{border: "1px solid #eeeeee", height: "250px"}} className="center col m3 s12">
-                <img src="/img/logos/dd.png" height="150px" alt="dd-logo"/>
-                <h6 className="indigo-text"><b><i>Delhi Daredevils (DD)</i></b></h6>
+                <img src="/img/logos/delhic.png" height="150px" alt="dd-logo"/>
+                <h6 className="indigo-text"><b><i>Delhi Capitals (DC)</i></b></h6>
               </div>
               <div style={{border: "1px solid #eeeeee", height: "250px"}} className="center col m3 s12">
                 <img src="/img/logos/rcb.png" height="150px" alt="rcb-logo"/>
@@ -71,7 +71,7 @@ class Home extends React.Component {
             </div>
           <div className="row">
             <div style={{border: "1px solid #eeeeee",height: "250px"}} className="center col m3 s12">
-              <img src="/img/logos/csk.png" height="150px" alt="srh-logo"/>
+              <img src="/img/logos/srh.png" height="150px" alt="srh-logo"/>
               <h6 className="indigo-text"><b><i>Sunrisers Hyderabad (SRH)</i></b></h6>
             </div>
             <div style={{border: "1px solid #eeeeee", height: "250px"}} className="center col m3 s12">
